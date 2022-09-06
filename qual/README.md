@@ -14,9 +14,9 @@ Two direct flights on morning and evening, as long as all 2-step flight bypass a
 
 The formula is not complex at all. However, the time complexity for each query `(u,v)` is $O(N)$ in the worst case. So the overall time complexity could be $O(NQ)$.
 
-> What if we pre-process those *worst cases*?
+> What if we pre-process those *worst cases* off-line?
 
 I mean we don't need to enumerate all potential intermediate airport `k`,
 
-- For the airports that has a few flights, we can enumerate the intersection sets of "adjacent" airports for the the two queried airports.
+- For the airports that have a few flights, we can enumerate the intersection sets of "adjacent" airports for the the two queried airports.
 - If the query involving a airport that has too many direct flights, we'd better pre-calculte all query results between itself and all airports that can be reached out by 2 steps. 
