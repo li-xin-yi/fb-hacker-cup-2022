@@ -53,7 +53,7 @@ I mean we don't need to enumerate all potential intermediate airports `k`,
 
 Try $\sqrt{M}$. 
 
-For each airport with $> \sqrt{M}$ edges, we traverse at most $M$ edges to calculate the capacity between it and all its 2-step away neighbors. Notice that no more than $\sqrt{M}$ airports have the degree $> \sqrt{M}$, otherwise, there will be more than $M$ edges in the graph (Recall that no duplicate edges between two nodes). Thus, the pre-calculate stage costs $\O{M^1.5}$ time, and for every online query involving such a node, we return the result in $O(1)$.
+For each airport with $> \sqrt{M}$ edges, we traverse at most $M$ edges to calculate the capacity between it and all its 2-step away neighbors. Notice that no more than $\sqrt{M}$ airports have the degree $> \sqrt{M}$, otherwise, there will be more than $M$ edges in the graph (Recall that no duplicate edges between two nodes). Thus, the pre-calculate stage costs $O{M^1.5}$ time, and for every online query involving such a node, we return the result in $O(1)$.
 
 For a query of two airports with $\le \sqrt{M}$ edges, we only need to enumerate at most $2\sqrt{M}$ edges to find all 2-step paths between them, so the time complexity is $O(\sqrt{M})$.
 
