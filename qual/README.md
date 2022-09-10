@@ -19,9 +19,13 @@ For B2, based on the scenario we discussed in B1, a rock can't be drawn with a t
 
 See [Uniquely decodable codes](https://en.wikipedia.org/wiki/Variable-length_code?fbclid=IwAR01mMCdDjPkY_rBFTAZhgdcP0WcwiZxW_bvS6wRzeTYJ2w7TBI_FnOWH-g#Uniquely_decodable_codes), one easy way is to ensure that a codeword `c1` could never be a prefix of another codeword `c2`.
 
-#### 'A' + 'B'*n pattern
+#### 'A'\*n + 'B' pattern
 
-Make the initial letter different from the one in `c1`, and append a consecutive different length of the rest letters to it. For C1, As $N < 100$ and the max length of codewords is 200, we enumerate n from 1 to N-1 and get the codewords set.
+Here `B` refers to the initial letter in `c1`, and `A` is the rest letter. 
+
+`c1` won't be a prefix of any codeword.
+
+a codeward of length `n` is `'A*(n-1) + B`, prefix of all other longer codeword is `A*n`.
 
 #### Fix the initial letter, and fill out the rest nine letters.
 
@@ -53,11 +57,11 @@ I mean we don't need to enumerate all potential intermediate airports `k`,
 
 Try $\sqrt{M}$. 
 
-For each airport with $> \sqrt{M}$ edges, we traverse at most $M$ edges to calculate the capacity between it and all its 2-step away neighbors. Notice that no more than $\sqrt{M}$ airports have the degree $> \sqrt{M}$, otherwise, there will be more than $M$ edges in the graph (Recall that no duplicate edges between two nodes). Thus, the pre-calculate stage costs $O{M^1.5}$ time, and for every online query involving such a node, we return the result in $O(1)$.
+For each airport with $> \sqrt{M}$ edges, we traverse at most $M$ edges to calculate the capacity between it and all its 2-step away neighbors. Notice that no more than $\sqrt{M}$ airports have the degree $> \sqrt{M}$, otherwise, there will be more than $M$ edges in the graph (Recall that no duplicate edges between two nodes). Thus, the pre-calculate stage costs $O{M^{1.5}}$ time, and for every online query involving such a node, we return the result in $O(1)$.
 
 For a query of two airports with $\le \sqrt{M}$ edges, we only need to enumerate at most $2\sqrt{M}$ edges to find all 2-step paths between them, so the time complexity is $O(\sqrt{M})$.
 
-The overall time complexity is $O(M^1.5 + Q\sqrt{M})$.
+The overall time complexity is $O(M^{1.5} + Q\sqrt{M})$.
 
 
 
