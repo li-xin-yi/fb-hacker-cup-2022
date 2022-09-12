@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 class SolutionC {
@@ -26,22 +24,21 @@ class SolutionC {
     private static long solve(int N, int D, int K, int[][] points) {
         List<int[]> hull = convexHull(points, N);
         int M = hull.size();
-        Map<Integer,Long> cost = new HashMap<>();
-        cost.put(0,0L);
-        for(int i = 1; i < M; i++) {
-            cost.put(i, Long.MAX_VALUE);
-        }
-        while(!cost.isEmpty()) {
+        long[] cost = new long[M];
+        Arrays.fill(cost, Long.MAX_VALUE);
+        cost[0] = 0;
+        for(int i = 0; i < M; i++) {
             int idx = minIndex(cost);
             if(idx == -1) return -1L;
             
-            long curCost = cost.remove(idx);
-            if(idx == M-1) return curCost;
-            for(int nei: cost.keySet()) {
+            long curCost = cost[idx];
+            if(idx == M - 1) return curCost;
+            cost[idx] = -1;
+            for(int nei = 0; nei < M; nei++) {
+                if(cost[nei] == -1) continue;
                 long d = dist(hull.get(idx), hull.get(nei));
-                long delta = Math.max(K, d);
-                if(d <= (long)D*D && curCost + delta < cost.get(nei)) {
-                    cost.put(nei, curCost + delta);
+                if(d <= (long)D*D) {
+                    cost[nei] = Math.min(cost[nei], curCost + Math.max(K, d));
                 } 
             }
         }
@@ -57,14 +54,13 @@ class SolutionC {
         return (long)(a[0] - b[0]) * (a[0] - b[0]) + (long)(a[1] - b[1]) * (a[1] - b[1]);
     }
 
-    private static int minIndex(Map<Integer,Long> cost) {
+    private static int minIndex(long[] cost) {
         int minIdx = -1;
         long minCost = Long.MAX_VALUE;
-        for(int idx : cost.keySet()) {
-            long c = cost.get(idx);
-            if(c < minCost) {
-                minIdx = idx;
-                minCost = c;
+        for(int i = 0; i < cost.length; i++) {
+            if(cost[i] >= 0 && cost[i] < minCost) {
+                minCost = cost[i];
+                minIdx = i;
             }
         }
         return minIdx;
