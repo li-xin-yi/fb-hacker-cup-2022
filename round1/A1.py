@@ -13,7 +13,7 @@ def solve(N, K, nums, target):
         pos[nums[i]] = i
     target = [pos[num] for num in target]
     for i in range(N-1):
-        if target[i+1] != (target[i]+1) % N:
+        if target[i+1] != (target[i] + 1) % N:
             return "NO"
     return "YES"
 
