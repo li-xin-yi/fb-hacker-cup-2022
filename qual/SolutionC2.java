@@ -9,8 +9,10 @@ public class SolutionC2 {
             String word = scanner.next();
             System.out.printf("Case #%d: %s\n", t + 1, solve(n, word));
         }
+        scanner.close();
     }
 
-    public static String solve(int n, String word){
+    public static String solve(int n, String word) {
+        return "";
     }
 }
