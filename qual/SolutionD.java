@@ -35,7 +35,46 @@ public class SolutionD {
     }
 
     public static String solve(int n, int m, int q, Map<Integer, Map<Integer, Long>> graph, int[][] query) {
-        return "";
-    }
+        // preprocess
+        Map<Integer, Map<Integer, Long>> pre = new HashMap<>();
+        for (int u : graph.keySet()) {
+            int d = graph.get(u).size();
+            if (d * d >= m) {
+                pre.put(u, new HashMap<>());
+                for (int k : graph.get(u).keySet()) {
+                    for (int v : graph.get(k).keySet()) {
+                        if (u == v)
+                            continue;
+                        long w = Math.min(graph.get(u).get(k), graph.get(k).get(v));
+                        pre.get(u).put(v, pre.get(u).getOrDefault(v, 0L) + w);
+                    }
+                }
+            }
+        }
 
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            int u = query[i][0];
+            int v = query[i][1];
+            Map<Integer, Long> uEdges = graph.getOrDefault(u, new HashMap<>());
+            Map<Integer, Long> vEdges = graph.getOrDefault(v, new HashMap<>());
+            if (uEdges.size() < vEdges.size()) {
+                int tmp = u;
+                u = v;
+                v = tmp;
+            }
+            long w = graph.getOrDefault(u, new HashMap<>()).getOrDefault(v, 0L) * 2;
+            if (pre.containsKey(u)) {
+                w += pre.get(u).getOrDefault(v, 0L);
+            } else {
+                for (int k : uEdges.keySet()) {
+                    if (vEdges.containsKey(k)) {
+                        w += Math.min(uEdges.get(k), vEdges.get(k));
+                    }
+                }
+            }
+            res.append(' ').append(w);
+        }
+        return res.toString();
+    }
 }

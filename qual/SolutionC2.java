@@ -13,6 +13,15 @@ public class SolutionC2 {
     }
 
     public static String solve(int n, String word) {
-        return "";
+        char start = word.charAt(0);
+        char first = start == '.' ? '-' : '.';
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n - 1; i++) {
+            String binary = Integer.toBinaryString(i);
+            String padding = String.format("%9s", binary).replace(' ', '.');
+            String s = padding.replace('0', '.').replace('1', '-');
+            sb.append('\n').append(first).append(s);
+        }
+        return sb.toString();
     }
 }

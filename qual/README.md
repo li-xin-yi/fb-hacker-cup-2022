@@ -1,6 +1,7 @@
 ## Videos (Chinese only, work with my friend)
 
 - Part 1 (A - B2): [![](https://img.shields.io/youtube/likes/1Wklj__zv0s?style=social)](https://www.youtube.com/watch?v=1Wklj__zv0s)
+- Part 2 (C1 - D): [![](https://img.shields.io/youtube/likes/862Rb7aOm5Y?style=social)](https://www.youtube.com/watch?v=862Rb7aOm5Y)
 
 ## Ideas
 
@@ -38,7 +39,8 @@ See [Uniquely decodable codes](https://en.wikipedia.org/wiki/Variable-length_cod
 
 #### 'A'\*n + 'B' pattern
 
-[Problem-C1 Link](https://www.facebook.com/codingcompetitions/hacker-cup/2022/qualification-round/problems/C1) | [Python Solution](C1.py)
+[Problem-C1 Link](https://www.facebook.com/codingcompetitions/hacker-cup/2022/qualification-round/problems/C1) | [Python Solution](C1.py) | [Java Solution](SolutionC1.java)
+
 
 Here `B` refers to the initial letter in `c1`, and `A` is the rest letter. 
 
@@ -48,7 +50,7 @@ a codeward of length `n` is `'A*(n-1) + B`, prefix of all other longer codeword 
 
 #### Fix the initial letter, and fill out the rest nine letters.
 
-[Problem-C2 Link](https://www.facebook.com/codingcompetitions/hacker-cup/2022/qualification-round/problems/C2) | [Python Solution](C2.py)
+[Problem-C2 Link](https://www.facebook.com/codingcompetitions/hacker-cup/2022/qualification-round/problems/C2) | [Python Solution](C2.py) | [Java Solution](SolutionC2.java)
 
 We fix the initial letter of those `N-1` codewords like before, to get the rest 9-length substring, we have $2^9 > N$ choices for C2.
 
@@ -56,7 +58,7 @@ We fix the initial letter of those `N-1` codewords like before, to get the rest 
 
 ### Problem D
 
-[Link](https://www.facebook.com/codingcompetitions/hacker-cup/2022/qualification-round/problems/D) | [Python Solution](D.py)
+[Link](https://www.facebook.com/codingcompetitions/hacker-cup/2022/qualification-round/problems/D) | [Python Solution](D.py) | [Java Solution](SolutionD.java)
 
 Usually, we represent such an undirect graph of `N` nodes and `M` edges by an adjacency list or matrix `graph`, in which `graph[u][v]` represents the capacity of a **direct** flight between airport `u` and `v`. If there is no direct flight between `u` and `v`, we set `graph[u][v]` as 0 (including the case `u = v`).
 
